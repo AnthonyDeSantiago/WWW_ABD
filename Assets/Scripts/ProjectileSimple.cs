@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class ProjectileSimple : MonoBehaviour, IProjectile
 {
+    public float speed = 10f;
+    public float damage;
 
-    float IProjectile.speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-    float IProjectile.damage { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public Vector3 directionVector {get; set;}
 
     public void Move()
     {
-        throw new System.NotImplementedException();
+        Vector3 movement = directionVector * speed * Time.deltaTime;
+        transform.Translate(movement, Space.World);
     }
 
     public void Rotate()
@@ -27,6 +29,6 @@ public class ProjectileSimple : MonoBehaviour, IProjectile
     // Update is called once per frame
     void Update()
     {
-        
+        Move();
     }
 }

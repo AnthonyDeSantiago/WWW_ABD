@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private Camera mainCamera;
     public float speed = 10f;
     public LayerMask floorLayer;
+    public SpawnerProjectile spawner;
+    public ProjectileSimple p;
 
 
     // Start is called before the first frame update
@@ -21,6 +23,15 @@ public class Player : MonoBehaviour
     void Update() {
         Move();
         Rotate();
+        float x = spawner.transform.position.x - transform.position.x;
+        float y = spawner.transform.position.y - transform.position.y;
+        float z = spawner.transform.position.z - transform.position.z;
+
+        Vector3 directionVector = new Vector3(x, 0f, z);
+
+        p.directionVector = directionVector;
+
+        Fire(p);
     }
 
     void Move()
@@ -46,5 +57,9 @@ public class Player : MonoBehaviour
             transform.LookAt(new Vector3(targetPoint.x, transform.position.y, targetPoint.z));
         }
 
+    }
+
+    void Fire(ProjectileSimple p) {
+        spawner.Spawn(p);
     }
 }
