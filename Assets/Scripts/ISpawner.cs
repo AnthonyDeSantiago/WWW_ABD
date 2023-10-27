@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface ISpawner
 {
-   //public Projectile projectile {get; set;}
+
    //public void Spawn();
 
 }
